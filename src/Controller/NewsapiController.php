@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Service\NewsapiService;
+use App\Service\RapidapiService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,9 +19,12 @@ class NewsapiController extends AbstractController
     #[Route('/', name: 'articles')]
     public function listResponse() :Response
     {
-        $response = (new NewsapiService())->NewsapiArticles();
-        $view = $this->renderView("article/list.html.twig", ["articles" => $response]);
+        $newsapi = (new NewsapiService())->NewsapiArticles();
+        $rapiseapi = (new RapidapiService())->RapidapiArticles();
+
+        $view = $this->renderView("article/list.html.twig", ["newsapi" => $newsapi, "rapidapi"=>$rapiseapi]);
 
         return (new Response())->setContent($view);
     }
+
 }

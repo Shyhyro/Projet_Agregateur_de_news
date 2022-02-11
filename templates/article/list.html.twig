@@ -1,11 +1,20 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    {% for article in articles %}
+    {% for article in newsapi %}
         <h2>{{ article['title'] }}</h2>
         <p>{{ article['publishedAt'] }} by {{ article['author'] }}</p>
         <div>
             <img style="width: 400px; height: 200px" alt="{{ article['title'] }}" src="{{ article['urlToImage'] }}">
+            <div>{{ article['description'] }}</div>
+        </div>
+        <a href="{{ article['url'] }}">See more</a>
+    {% endfor %}
+    {% for article in rapidapi %}
+        <h2>{{ article['title'] }}</h2>
+        <p>{{ article['datePublished'] }}</p>
+        <div>
+            <img style="width: 400px; height: 200px" alt="{{ article['title'] }}" src="">
             <div>{{ article['description'] }}</div>
         </div>
         <a href="{{ article['url'] }}">See more</a>
