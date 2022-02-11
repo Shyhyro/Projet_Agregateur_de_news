@@ -4,6 +4,10 @@ namespace App\Service;
 
 class RapidapiService
 {
+    /**
+     * Get and return json file of rapidapi.
+     * @return array
+     */
     public function RapidapiArticles() : array
     {
         $json = 'https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/search/TrendingNewsAPI?pageNumber=1&pageSize=10&withThumbnails=false&location=us&rapidapi-key=8170f34745mshcd2eba5bd006917p1ba25bjsn95071e084059';

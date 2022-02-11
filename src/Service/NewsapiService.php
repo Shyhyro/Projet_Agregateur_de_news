@@ -5,6 +5,10 @@ namespace App\Service;
 
 class NewsapiService
 {
+    /**
+     * Get and return json file of newsapi
+     * @return array
+     */
     public function NewsapiArticles() : array
     {
         $json = 'https://newsapi.org/v2/top-headlines?q=entertainment&apiKey=e4497f15dc6349dc91006f4a337f9bff';
