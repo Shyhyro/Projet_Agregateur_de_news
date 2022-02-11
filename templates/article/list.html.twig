@@ -2,22 +2,30 @@
 
 {% block body %}
     {% for article in newsapi %}
-        <h2>{{ article['title'] }}</h2>
-        <p>{{ article['publishedAt'] }} by {{ article['author'] }}</p>
-        <div>
-            <img style="width: 400px; height: 200px" alt="{{ article['title'] }}" src="{{ article['urlToImage'] }}">
-            <div>{{ article['description'] }}</div>
+        <div class="article">
+            <h2>{{ article['title'] }}</h2>
+            <p>{{ article['publishedAt'] }} by {{ article['author'] }}</p>
+            <img alt="{{ article['title'] }}" src="{{ article['urlToImage'] }}">
+            <div class="description">{{ article['description'] }}</div>
+            <a href="{{ article['url'] }}">See more</a>
         </div>
-        <a href="{{ article['url'] }}">See more</a>
     {% endfor %}
     {% for article in rapidapi %}
-        <h2>{{ article['title'] }}</h2>
-        <p>{{ article['datePublished'] }}</p>
-        <div>
+        <div class="article">
+            <h2>{{ article['title'] }}</h2>
+            <p>{{ article['datePublished'] }}</p>
             <img style="width: 400px; height: 200px" alt="{{ article['title'] }}" src="">
-            <div>{{ article['description'] }}</div>
+            <div class="description">{{ article['description'] }}</div>
+            <a href="{{ article['url'] }}">See more</a>
         </div>
-        <a href="{{ article['url'] }}">See more</a>
-
+    {% endfor %}
+    {% for article in currentsapi %}
+        <div class="article">
+            <h2>{{ article['title'] }}</h2>
+            <p>{{ article['published'] }} by {{ article['author'] }}</p>
+            <img style="width: 400px; height: 200px" alt="{{ article['title'] }}" src="{{ article['image'] }}">
+            <div class="description">{{ article['description'] }}</div>
+            <a href="{{ article['url'] }}">See more</a>
+        </div>
     {% endfor %}
 {% endblock %}

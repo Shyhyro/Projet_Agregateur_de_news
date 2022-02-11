@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Service\CurrentsapiService;
 use App\Service\NewsapiService;
 use App\Service\RapidapiService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,7 +13,6 @@ class NewsapiController extends AbstractController
 {
     /**
      * List available articles.
-     * NewsAPI e4497f15dc6349dc91006f4a337f9bff
      * @return Response
      * @throws \jcobhams\NewsApi\NewsApiException
      */
@@ -20,9 +20,24 @@ class NewsapiController extends AbstractController
     public function listResponse() :Response
     {
         $newsapi = (new NewsapiService())->NewsapiArticles();
-        $rapiseapi = (new RapidapiService())->RapidapiArticles();
+        $rapidapi = (new RapidapiService())->RapidapiArticles();
+        $currentsapi = (new CurrentsapiService())->CurrentsapiArticles();
 
-        $view = $this->renderView("article/list.html.twig", ["newsapi" => $newsapi, "rapidapi"=>$rapiseapi]);
+        $view = $this->renderView("article/list.html.twig", ["newsapi" => $newsapi, "rapidapi"=>$rapidapi, "currentsapi"=>$currentsapi]);
+
+        return (new Response())->setContent($view);
+    }
+
+    /**
+     * List od news Api articles
+     * @return Response
+     */
+    #[Route("/newsapi", name: "newsapi_articles")]
+    public function newsapiResponse() : Response
+    {
+        $newsapi = (new NewsapiService())->NewsapiArticles();
+
+        $view = $this->renderView("article/newsapi.html.twig", ['newsapi'=>$newsapi]);
 
         return (new Response())->setContent($view);
     }
