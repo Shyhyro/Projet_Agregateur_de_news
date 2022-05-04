@@ -23,7 +23,11 @@ class NewsapiController extends AbstractController
         $rapidapi = (new RapidapiService())->RapidapiArticles();
         $currentsapi = (new CurrentsapiService())->CurrentsapiArticles();
 
-        $view = $this->renderView("article/list.html.twig", ["newsapi" => $newsapi, "rapidapi"=>$rapidapi, "currentsapi"=>$currentsapi]);
+        $view = $this->renderView("article/list.html.twig", [
+            "newsapi" => $newsapi,
+            "rapidapi"=>$rapidapi,
+            "currentsapi"=>$currentsapi
+        ]);
 
         return (new Response())->setContent($view);
     }
@@ -37,7 +41,9 @@ class NewsapiController extends AbstractController
     {
         $newsapi = (new NewsapiService())->NewsapiArticles();
 
-        $view = $this->renderView("article/newsapi.html.twig", ['newsapi'=>$newsapi]);
+        $view = $this->renderView("article/newsapi.html.twig", [
+            'newsapi'=>$newsapi
+        ]);
 
         return (new Response())->setContent($view);
     }
